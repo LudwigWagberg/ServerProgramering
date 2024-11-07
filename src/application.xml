@@ -1,10 +1,15 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"  
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
             "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
 
 	<!-- add your bean definitions here! -->
 	<bean id="CustomerManagementService" class="com.yrgo.services.customers.CustomerManagementMockImpl"/>
+	<bean id="DiaryManagementService" class="com.yrgo.services.diary.DiaryManagementServiceMockImpl"/>
 
 
+	<bean id="CallHandlingService" class="com.yrgo.services.calls.CallHandlingServiceImpl">
+		<constructor-arg ref = "CustomerManagementService"/>
+		<constructor-arg ref = "DiaryManagementService"/>
+	</bean>
 </beans>
