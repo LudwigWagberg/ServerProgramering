@@ -17,7 +17,8 @@
 	</bean>
 
 	<!-- Dao beans -->
-	<bean id="customerDao" class="com.yrgo.dataaccess.CustomerDaoJdbcTemplateImpl">
+	<bean id="customerDao" class="com.yrgo.dataaccess.CustomerDaoJdbcTemplateImpl"
+	init-method="createTables">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>
 

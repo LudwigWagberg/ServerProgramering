@@ -32,7 +32,6 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     public CustomerDaoJdbcTemplateImpl(JdbcTemplate template){
         this.template = template;
-        createTables();
     }
 
     private void createTables()	{
