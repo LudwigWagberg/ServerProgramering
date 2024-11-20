@@ -1,7 +1,12 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
-		"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
 
-<beans>
+	   xsi:schemaLocation=
+			   "http://www.springframework.org/schema/aop
+				http://www.springframework.org/schema/aop/spring-aop.xsd
+				http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- DataSources -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -33,4 +38,16 @@
 		<constructor-arg ref="CustomerManagementService" />
 		<constructor-arg ref="DiaryManagementService" />
 	</bean>
+
+	<!--Advice -->
+	<bean id="PerformanceTimingAdvice" class="com.yrgo.advice.PerformanceTimingAdvice" />
+
+	<aop:config>
+		<aop:aspect ref = "PerformanceTimingAdvice">
+			<aop:around method="performTimingMeasurement"
+						pointcut = "execution (* com.yrgo.services..*.* (..))
+						|| execution(* com.yrgo.dataaccess..*.*(..))" />
+		</aop:aspect>
+	</aop:config>
+
 </beans>
