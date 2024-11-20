@@ -2,15 +2,19 @@ package com.yrgo.dataaccess;
 
 import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
 
@@ -30,10 +34,12 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
     private JdbcTemplate template;
 
+    @Autowired
     public CustomerDaoJdbcTemplateImpl(JdbcTemplate template){
         this.template = template;
     }
 
+    @PostConstruct
     private void createTables()	{
         try{
             this.template.update(CREATE_TBL_CUSTOMER);
