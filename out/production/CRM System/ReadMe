@@ -1,0 +1,5 @@
+This is a spring application that manages Customer Relation that interacts with a database
+
+
+The application consists of:
+a client (SimpleClient) The main entry point that interacts with
