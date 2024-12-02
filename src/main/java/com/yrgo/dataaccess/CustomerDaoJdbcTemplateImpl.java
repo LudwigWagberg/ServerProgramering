@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-@Repository
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 
 
